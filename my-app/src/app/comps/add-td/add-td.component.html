@@ -1,0 +1,16 @@
+<p>add-td works!</p>
+<div>
+    <form (ngSubmit)="sub()">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" [(ngModel)]="title" name="title" class="form-control" id="title" aria-describedby="emailHelp">
+     
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">PDescription</label>
+          <input type="text" [(ngModel)]="description" name="description" class="form-control" id="description">
+        </div>
+     
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+</div>

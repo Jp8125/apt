@@ -1,0 +1,6 @@
+<form [formGroup]="demoforms">
+    <label >name</label><input type="text" formControlName="name">
+    <label >age</label><input type="number" formControlName="age">
+    <label >name</label><input type="text" formControlName="value">
+    <p>{{demoforms.value|json}}</p>
+</form>

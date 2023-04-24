@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-center p-5">
+    <div class="border  bg-light p-5">
+        <h4 class="text-center text-primary">Todo<span class="material-symbols-outlined ms-2 ">
+            edit
+            </span></h4>
+        <div class="mb-3">
+          <label for="" class="form-label">Task</label>
+          <input type="text"
+            class="form-control" name="task"  aria-describedby="helpId" [(ngModel)]="task" placeholder="">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Priority</label>
+            <input type="text"
+              class="form-control" name="priority"  aria-describedby="helpId" [(ngModel)]="priority" placeholder="">
+          </div>
+        <div class="d-flex justify-content-center"><button class="btn btn-dark" (click)="add()"> add </button></div>
+    </div>
+</div>
+
+<div class="container  bg-light">
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Task</th>
+                <th>priority</th>
+                <th>Status</th>
+                <th>action</th>
+            </tr>
+        </thead>
+      <tbody>
+        <tr *ngFor="let val of tarr">
+            <td [class]="val.dash">{{val.id}}</td>
+            <td [class]="val.dash">{{val.task}}</td>
+            <td [class]="val.dash">{{val.priority}}</td>
+            <td [class]="val.dash">{{val.status}}</td>
+            <td ><button class="btn btn-danger me-4" (click)="del(val.id)">delete</button><button [class]="val.stat_color" (click)="complete(val)">{{val.stat}}</button></td>
+        </tr>
+      </tbody>
+    </table>
+</div>

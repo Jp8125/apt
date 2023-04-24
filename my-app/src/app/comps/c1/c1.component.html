@@ -1,0 +1,8 @@
+<app-add-td (todoAdd)="addTodo($event)"></app-add-td>
+<div  *ngIf="this.tds.length==0; else elseBlock" class="text text-success display-6 mt-5 text-center">todo is empty</div>
+<ng-template #elseBlock>
+        <div *ngFor="let t of tds" class="container">
+                <app-display [t]="t" (todoDel)="deleteTodo(t)"></app-display>
+        </div>
+
+</ng-template>

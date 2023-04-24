@@ -1,0 +1,20 @@
+<div class="container d-flex justify-content-center">
+    <div class="p-4 border mt-4">
+        <div class="mb-3">
+            <label for="" class="form-label">Name</label>
+            <input type="text"
+              class="form-control" name="username" id="" aria-describedby="helpId" [(ngModel)]="uname" placeholder="">
+          
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="" [(ngModel)]="pwd" placeholder="">
+          </div>
+          <div class="d-flex justify-content-center">
+            <button (click)="validate()">login</button>
+          </div>
+         
+          <div class="d-flex justify-content-center"><small id="helpId"  [class]="alrtClass">{{alrt}}</small></div>
+    </div>
+   
+</div>

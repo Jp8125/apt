@@ -1,0 +1,40 @@
+<div class="container">
+    
+        <div class="mb-3 row">
+            <label for="inputName" class="col-4 col-form-label">Id</label>
+            <div class="col-8">
+                <input type="text" class="form-control" name="id" id="id"  [(ngModel)]="id">
+                <small *ngIf="check">pls enter number only</small>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputName" class="col-4 col-form-label">Name</label>
+            <div class="col-8">
+                <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Name" [(ngModel)]="name">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="dept" class="col-4 col-form-label">Department</label>
+            <div class="col-8">
+                <input type="text" class="form-control" name="dept" id="dept" placeholder="department" [(ngModel)]="dept">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="rh" class="col-4 col-form-label">Reporting Head</label>
+            <div class="col-8">
+                <input type="text" class="form-control" name="rh" id="rh" [(ngModel)]="rh">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputName" class="col-4 col-form-label">Project Manager</label>
+            <div class="col-8">
+                <input type="text" class="form-control" name="pm" id="pm" [(ngModel)]="pm">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="offset-sm-4 col-sm-8">
+                <button type="submit" class="btn btn-primary" (click)="add()">add data</button>
+            </div>
+        </div>
+        <app-list [data]="ArrObj"></app-list>
+</div>
