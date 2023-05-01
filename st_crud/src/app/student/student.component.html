@@ -1,0 +1,54 @@
+<form  [formGroup]="inputForm" class="container mt-2 p-4 border">
+    <div class="container p-2">
+        <h1 class="text-center py-3">Student Details</h1>
+        <div class="my-2">
+            <label for="name" >Name</label>
+            <input type="text" formControlName="name" class="form-control">
+        </div>
+        <div  formGroupName="address">
+            <div>
+                <label for="flatno" >flatno</label>
+                <input type="number" name="flat" id="flatno" formControlName="flat_no" class="form-control">
+
+            </div>
+            <div class="my-2">
+                <label for="city" >City</label>
+                <input type="text" name="flat" id="flatno" formControlName="street" class="form-control">
+            </div>
+            <div class="my-2">
+                <label for="street"  >Street Name</label>
+                <input type="text" name="flat" id="flatno" formControlName="city" class="form-control">
+
+            </div>
+            <div>
+                <label for="state" >State</label>
+                <input type="text" class="form-control" name="flat" id="flatno" formControlName="state">
+            </div>
+        </div>
+        <div class="my-2">
+            <label for="email" >Email</label>
+            <input type="email" formControlName="email" class="form-control">
+        </div>
+        <div>
+            <label for="gender" >Gender</label>
+            <div >
+                <input type="radio" formControlName="gender" name="gender" value="male"><label for="male" >male</label>
+                <input type="radio" formControlName="gender" name="gender" value="female" class="ms-2"><label for="female" >female</label>
+            </div>
+        </div>
+        <div class="my-2">
+            <label for="dob" >Date of Birth</label>
+            <input type="date" formControlName="dob" class="form-control">
+            <small *ngIf="inputForm.get('dob')?.errors?.['invalid']">age should be greater then 18</small>
+        </div>
+        <div class="row my-2">
+            <label for="dob" >Phone</label>
+            <input type="tel" formControlName="Phone" class="form-control">
+        </div>
+        <div class="d-flex justify-content-around">
+            <button  class="btn btn-dark" [disabled]="inputForm.invalid" (click)="Submit()">add</button>
+            <button  class="btn btn-warning"  (click)="UpdateVal()">Update</button>
+        </div>
+    </div>
+</form>
+<app-student-list></app-student-list>

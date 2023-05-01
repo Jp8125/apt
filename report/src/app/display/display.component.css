@@ -1,0 +1,7 @@
+.stdimg{
+    width: 400px;
+    height: 300px;
+}
+td,tr,table{
+    border: 1px solid;
+}

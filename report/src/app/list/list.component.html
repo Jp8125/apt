@@ -1,0 +1,10 @@
+<div class="container">
+<select name="student" class="form-select" id="std" #drop (change)="pass(drop.value)">
+    <option value="default" class="text-center">---select student---</option>
+        <option [value]="item.StudentID" *ngFor="let item of students">{{item.StudentName}}</option>
+</select>
+</div>
+  
+
+
+<app-display [data]="st_marks"></app-display>

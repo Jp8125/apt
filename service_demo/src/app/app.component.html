@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand p-1" >Navbar</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" routerLink="/form" aria-current="page">Form</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/table">Table</a>
+            </li>
+          </ul>
+    </div>
+</nav>
+<div>
+  <router-outlet></router-outlet>
+</div>

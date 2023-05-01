@@ -1,0 +1,34 @@
+<form  [formGroup]="userform" class="container mt-2 p-4 border">
+    <div class="container">
+        <h1 class="text-center py-3">Student Details</h1>
+        <div class="row">
+            <label for="name" class="col">Name</label>
+            <input type="text" formControlName="name" class="col">
+            <small class="text-center text-danger" *ngIf="userform.get('name')?.errors?.['invalid']">name is alredy in use</small>
+        </div>
+        <div class="row my-2">
+            <label for="age" class="col">Age</label>
+            <input type="number" formControlName="age" class="col">
+            <small *ngIf="userform.get('age')?.errors?.['invalid']" class="text-center text-danger">age should be greater then 18</small>
+        </div>
+        <div class="row">
+            <label for="address" class="col"></label>
+            <textarea type="text" formControlName="Address" class="col"></textarea>
+        </div>
+        <div class="row my-2">
+            <label for="qualification" class="col">Qualification</label>
+            <input type="text" formControlName="qualification" class="col">
+        </div>
+        <div class="row">
+            <label for="gender" class="col">Gender</label>
+           
+            <div class="col">
+                <input type="radio" formControlName="gender" name="gender" value="male"><label for="male" >male</label>
+                <input type="radio" formControlName="gender" name="gender" value="female" class="ms-2"><label for="female" >female</label>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button (click)="add()" class="btn btn-dark">add</button>
+        </div>
+    </div>
+</form>
