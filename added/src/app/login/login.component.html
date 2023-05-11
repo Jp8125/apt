@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center">
+    <form class="p-5 mt-5 shadow">
+    <div>
+        <label for="username">Usename</label>
+        <input name="uname"  class="form-control" id="username" type="text" #name="ngModel"  [(ngModel)]="uname" required>
+        <ng-container *ngIf="name?.errors?.['required'] && name?.touched">
+            <small class="text-center text-danger">username required</small>
+          </ng-container>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password"  class="form-control" id="password" name="pass" #password="ngModel"  [(ngModel)]="pass" required>
+        <ng-container *ngIf="password?.errors?.['required'] && password?.touched">
+            <small class="text-center text-danger">password required</small>
+          </ng-container>
+    </div>
+    <div class="d-flex justify-content-center my-3">
+        <button (click)="login()" class="btn btn-secondary" [disabled]="name.invalid && password.invalid">Login</button>
+    </div>
+</form>
+</div>

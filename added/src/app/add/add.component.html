@@ -1,0 +1,182 @@
+<div class="container">
+  <div [formGroup]="Application" class="formgroup">
+    <div formGroupName="fullname">
+      <h4 class="text-center bg-primary text-white">Basic Details</h4>
+      <div>
+        <label for="firstname">FirstName</label>
+        <input class="form-control" type="text" id="firstname" formControlName="FirstName" required />
+        <ng-container *ngIf="fname?.errors?.['required'] && fname?.touched">
+          <small class="text-center text-danger">name required</small>
+        </ng-container>
+      </div>
+      <div>
+        <label for="MiddleName">Middlename</label>
+        <input class="form-control" type="text" id="MiddleName" formControlName="MiddleName" required />
+        <ng-container *ngIf="mname?.errors?.['required'] && mname?.touched">
+          <small class="text-center text-danger">middle name required</small>
+        </ng-container>
+      </div>
+      <div>
+        <label for="Lastname">Lastname</label>
+        <input class="form-control" type="text" id="Lastname" formControlName="Lastname" required />
+        <ng-container *ngIf="lname?.errors?.['required'] && lname?.touched">
+          <small class="text-center text-danger">last name required</small>
+        </ng-container>
+      </div>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input class="form-control" type="email" id="email" formControlName="email" />
+      <ng-container *ngIf="email?.errors?.['required'] && email?.touched">
+        <small class="text-center text-danger">email required</small>
+      </ng-container>
+      <ng-container *ngIf="email?.errors?.['email'] && email?.touched">
+        <small class="text-center text-danger">email invalid</small>
+      </ng-container>
+    </div>
+    <div formGroupName="address">
+      <h5 class="text-center bg-primary text-white">Address Details</h5>
+      <div>
+        <label for="bid">Building</label>
+        <input class="form-control" type="text" id="bid" formControlName="Building" />
+        <ng-container *ngIf="Building?.errors?.['required'] && Building?.touched">
+          <small class="text-center text-danger">Building no required</small>
+        </ng-container>
+      </div>
+      <div>
+        <label for="area">Area</label>
+        <input class="form-control" type="text" id="area" formControlName="area" />
+        <ng-container *ngIf="Area?.errors?.['required'] && Area?.touched">
+          <small class="text-center text-danger">Area required</small>
+        </ng-container>
+      </div>
+      <div class="my-2">
+        <label for="state">State</label>
+        <select name="state" id="state" [(ngModel)]="statename" formControlName="State" (change)="findCity(statename)">
+          <option value="{{item.StateName}}" *ngFor="let item of State">
+            {{ item.StateName }}
+          </option>
+        </select>
+        <ng-container *ngIf="States?.errors?.['required'] && States?.touched">
+          <small class="text-center text-danger">State required</small>
+        </ng-container>
+      </div>
+      <div class="my-2">
+        <label for="city">City</label>
+        <select name="city" id="city" formControlName="City">
+          <option value="{{ item.Name }}" *ngFor="let item of filterCity">
+            {{ item.Name }}
+          </option>
+        </select>
+        <ng-container *ngIf="Cities?.errors?.['required'] && Cities?.touched">
+          <small class="text-center text-danger">City required</small>
+        </ng-container>
+      </div>
+    </div>
+    <div class="my-2">
+      <label for="gender"> Gender </label>
+      <div>
+        <label for="male">Male:</label>
+        <input type="radio" value="male" name="gender" formControlName="gender" />
+      </div>
+      <div class="my-2">
+        <label for="female">Female</label>
+        <input type="radio" value="female" name="gender" formControlName="gender" />
+      </div>
+      <ng-container *ngIf="gender?.errors?.['required'] && gender?.touched">
+        <small class="text-center text-danger">email required</small>
+      </ng-container>
+    </div>
+    <label for="skills">Skills</label>
+    <div formArrayName="Skills">
+      <div class="my-3 input-group" *ngFor="let item of skill.controls; let i = index" >
+        <input  class="form-control"  aria-describedby="button-addon2" type="text" [formControlName]="i" /> 
+        <button (click)="delete(i)"  id="button-addon2" [disabled]="skill.controls.length<2" class="btn btn-danger">Del</button>
+        <div>
+          <small class="text-danger" *ngIf="item?.errors?.['required'] && item?.touched">* Enter skill</small>
+        </div>
+      </div>
+      <div>
+        <button (click)="addskil()">add</button>
+      </div>
+    </div>
+    <h4 class="text-center bg-primary text-white">Education</h4>
+    <div formGroupName="education">
+      <h4 class="text-center bg-dark text-white">10th</h4>
+      <div formGroupName="secondary">
+        <div>
+          <label for="marks">Marks</label>
+          <input class="form-control" type="text" formControlName="Marks">
+          <small class="text-danger" *ngIf="ssc?.get('Marks')?.errors?.['pattern']">only number allowed</small>
+          <small class="text-danger" *ngIf="ssc?.get('Marks')?.errors?.['max']||ssc?.get('Marks')?.errors?.['min']">marks should be in between 0-100</small>
+        </div>
+        <div>
+          <label for="Grade">Grade</label>
+          <input class="form-control" type="text" formControlName="Grade">
+        </div>
+        <div>
+          <label for="marks">Year OF Passout</label>
+          <input class="form-control" type="text" formControlName="YearofPassout">
+          <small class="text-danger" *ngIf="ssc?.get('YearofPassout')?.errors?.['pattern']">only number allowed</small>
+        </div>
+        <ng-container *ngIf="ssc?.invalid && ssc?.touched">
+          <small class="text-center text-danger">School details required</small>
+        </ng-container>
+      </div>
+      <div formGroupName="highsecondary">
+        <h4 class="text-center bg-dark text-white">12th</h4>
+        <div>
+          <label for="marks">Marks</label>
+          <input class="form-control" type="text" formControlName="Marks">
+          <small class="text-danger" *ngIf="hsc?.get('Marks')?.errors?.['pattern']">only number allowed</small>
+          <small class="text-danger" *ngIf="hsc?.get('Marks')?.errors?.['max']||hsc?.get('Marks')?.errors?.['min']">marks should be in between 0-100</small>
+        </div>
+        <div>
+          <label for="Grade">Grade</label>
+          <input class="form-control" type="text" formControlName="Grade">
+        </div>
+        <div>
+          <label for="marks">Year OF Passout</label>
+          <input class="form-control" type="text" formControlName="YearofPassout">
+          <small class="text-danger" *ngIf="hsc?.get('YearofPassout')?.errors?.['pattern']">only 4 digit number
+            allowed</small>
+        </div>
+        <ng-container *ngIf="hsc?.invalid && hsc?.touched">
+          <small class="text-center text-danger">high school details required</small>
+        </ng-container>
+      </div>
+      <div formGroupName="Degree">
+        <h4 class="text-center bg-dark text-white">Degree</h4>
+        <div>
+          <label for="marks">Marks</label>
+          <input class="form-control" type="text" formControlName="Marks">
+          <ng-container *ngIf="m?.errors?.['required'] && m?.touched">
+            <small class="text-center text-danger">marks details required</small>
+          </ng-container>
+          <small class="text-danger" *ngIf="m?.errors?.['pattern']">only number allowed</small>
+          <small class="text-danger" *ngIf="m?.errors?.['max']||m?.errors?.['min']">marks should be in between 0-100</small>
+        </div>
+        <div>
+          <label for="Grade">Grade</label>
+          <input class="form-control" type="text" formControlName="Grade">
+          <ng-container *ngIf="g?.errors?.['required'] && g?.touched">
+            <small class="text-center text-danger">Grade details required</small>
+          </ng-container>
+        </div>
+        <div>
+          <label for="marks">Year OF Passout</label>
+          <input class="form-control" type="text" formControlName="YearofPassout">
+          <ng-container *ngIf="yp?.errors?.['required'] && yp?.touched">
+            <small class="text-center text-danger">year of passout required</small>
+          </ng-container>
+          <small class="text-danger" *ngIf="degree?.get('YearofPassout')?.errors?.['pattern']">only 4 digit number
+            allowed</small>
+        </div>
+
+      </div>
+    </div>
+    <div class="d-flex justify-content-center my-4">
+      <button (click)="add()" class="btn btn-info" [disabled]="Application.invalid">Add</button>
+    </div>
+  </div>
+</div>
